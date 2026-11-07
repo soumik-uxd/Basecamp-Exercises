@@ -17,6 +17,7 @@ dependencies = [
     "ipykernel>=6",              # the "Anthropic Basecamp (.venv)" notebook kernel
     "matplotlib>=3.7",           # Day 1/03 Prompt Rescue
     "tabulate>=0.9",             # Day 2/02 Inference Optimization
+    "jupyter>=1.1.1",
 ]
 
 [tool.uv]

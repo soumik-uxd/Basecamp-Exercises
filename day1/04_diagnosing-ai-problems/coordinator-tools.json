@@ -6,9 +6,13 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "id": {"type": "string"}
+          "id": {
+            "type": "string"
+          }
         },
-        "required": ["id"]
+        "required": [
+          "id"
+        ]
       }
     },
     {
@@ -17,9 +21,13 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "customer_id": {"type": "string"}
+          "customer_id": {
+            "type": "string"
+          }
         },
-        "required": ["customer_id"]
+        "required": [
+          "customer_id"
+        ]
       }
     },
     {
@@ -28,10 +36,16 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "customer_id": {"type": "string"},
-          "lookback_days": {"type": "integer"}
+          "customer_id": {
+            "type": "string"
+          },
+          "lookback_days": {
+            "type": "integer"
+          }
         },
-        "required": ["customer_id"]
+        "required": [
+          "customer_id"
+        ]
       }
     },
     {
@@ -40,9 +54,13 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "identifier": {"type": "string"}
+          "identifier": {
+            "type": "string"
+          }
         },
-        "required": ["identifier"]
+        "required": [
+          "identifier"
+        ]
       }
     },
     {
@@ -51,9 +69,13 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "cust": {"type": "string"}
+          "cust": {
+            "type": "string"
+          }
         },
-        "required": ["cust"]
+        "required": [
+          "cust"
+        ]
       }
     },
     {
@@ -62,9 +84,13 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "ticket_id": {"type": "string"}
+          "ticket_id": {
+            "type": "string"
+          }
         },
-        "required": ["ticket_id"]
+        "required": [
+          "ticket_id"
+        ]
       }
     },
     {
@@ -73,11 +99,20 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "customer_id": {"type": "string"},
-          "query": {"type": "string"},
-          "limit": {"type": "integer"}
+          "customer_id": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer"
+          }
         },
-        "required": ["customer_id", "query"]
+        "required": [
+          "customer_id",
+          "query"
+        ]
       }
     },
     {
@@ -86,10 +121,16 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "action": {"type": "string"},
-          "params": {"type": "object"}
+          "action": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object"
+          }
         },
-        "required": ["action"]
+        "required": [
+          "action"
+        ]
       }
     },
     {
@@ -98,9 +139,13 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "input": {"type": "string"}
+          "input": {
+            "type": "string"
+          }
         },
-        "required": ["input"]
+        "required": [
+          "input"
+        ]
       }
     },
     {
@@ -109,10 +154,16 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "customer_id": {"type": "string"},
-          "feature": {"type": "string"}
+          "customer_id": {
+            "type": "string"
+          },
+          "feature": {
+            "type": "string"
+          }
         },
-        "required": ["customer_id"]
+        "required": [
+          "customer_id"
+        ]
       }
     },
     {
@@ -121,10 +172,17 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "type": {"type": "string"},
-          "id": {"type": "string"}
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
         },
-        "required": ["type", "id"]
+        "required": [
+          "type",
+          "id"
+        ]
       }
     },
     {
@@ -133,9 +191,13 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "q": {"type": "string"}
+          "q": {
+            "type": "string"
+          }
         },
-        "required": ["q"]
+        "required": [
+          "q"
+        ]
       }
     },
     {
@@ -144,37 +206,109 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "system": {"type": "string", "enum": ["api", "dashboard", "webhooks", "sso", "all"]}
+          "system": {
+            "type": "string",
+            "enum": [
+              "api",
+              "dashboard",
+              "webhooks",
+              "sso",
+              "all"
+            ]
+          }
         },
-        "required": ["system"]
+        "required": [
+          "system"
+        ]
       }
     },
     {
       "name": "spawn_specialist",
-      "description": "Spawns a specialist agent for the given category.",
+      "description": "Assigns one distinct ticket issue to a specialist. Multiple calls are allowed for different issue_ids on the same ticket. Do not assign the same issue twice.",
       "input_schema": {
         "type": "object",
         "properties": {
           "category": {
             "type": "string",
-            "enum": ["billing", "technical", "account"]
+            "enum": [
+              "billing",
+              "technical",
+              "account"
+            ]
           },
-          "ticket_id": {"type": "string"}
+          "ticket_id": {
+            "type": "string"
+          },
+          "issue_id": {
+            "type": "string"
+          }
         },
-        "required": ["category", "ticket_id"]
+        "required": [
+          "category",
+          "ticket_id",
+          "issue_id"
+        ]
       }
     },
     {
       "name": "write_response",
-      "description": "Writes the response.",
+      "description": "Writes the customer response and records the status, owner, and next action for every distinct issue on the ticket.",
       "input_schema": {
         "type": "object",
         "properties": {
-          "ticket_id": {"type": "string"},
-          "response_body": {"type": "string"},
-          "resolution_status": {"type": "string", "enum": ["resolved", "escalated", "needs_info"]}
+          "ticket_id": {
+            "type": "string"
+          },
+          "response_body": {
+            "type": "string"
+          },
+          "resolution_status": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "escalated",
+              "needs_info"
+            ]
+          },
+          "issue_updates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "issue_id": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "resolved",
+                    "pending",
+                    "needs_info",
+                    "escalated"
+                  ]
+                },
+                "owner": {
+                  "type": "string"
+                },
+                "next_action": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "issue_id",
+                "status",
+                "owner",
+                "next_action"
+              ]
+            }
+          }
         },
-        "required": ["ticket_id", "response_body", "resolution_status"]
+        "required": [
+          "ticket_id",
+          "response_body",
+          "resolution_status",
+          "issue_updates"
+        ]
       }
     },
     {
@@ -183,11 +317,27 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "ticket_id": {"type": "string"},
-          "reason": {"type": "string", "enum": ["needs_code_change", "security", "customer_escalation", "agent_stuck"]},
-          "summary_for_human": {"type": "string"}
+          "ticket_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "needs_code_change",
+              "security",
+              "customer_escalation",
+              "agent_stuck"
+            ]
+          },
+          "summary_for_human": {
+            "type": "string"
+          }
         },
-        "required": ["ticket_id", "reason", "summary_for_human"]
+        "required": [
+          "ticket_id",
+          "reason",
+          "summary_for_human"
+        ]
       }
     },
     {
@@ -196,9 +346,13 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "data": {"type": "string"}
+          "data": {
+            "type": "string"
+          }
         },
-        "required": ["data"]
+        "required": [
+          "data"
+        ]
       }
     }
   ]
